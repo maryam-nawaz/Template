@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Government Schools Hub</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+    <!-- Three.js library for 3D animation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #e3f2fd; /* Blue 50 */
+        }
+        /* Custom scrollbar for aesthetics */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e0f2fe; /* Light Blue */
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3b82f6; /* Blue 500 */
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2563eb; /* Blue 600 */
+        }
+        /* Keyframes for the scrolling text animation */
+        .animate-scroll-text {
+            animation: scroll-left 25s linear infinite;
+        }
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+        /* Accordion transition for smooth opening/closing */
+        .accordion-content {
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+        }
+        .accordion-content.open {
+            max-height: 500px; /* A large enough value to accommodate content */
+            opacity: 1;
+        }
+        /* Styles for the modal popup */
+        .modal {
+            display: none;
+        }
+        .modal.active {
+            display: flex;
+        }
+        #scrollToTopBtn:active {
+            background-color: #f97316; /* Orange 500 */
+        }
+        #my3dCanvas {
+            width: 100%;
+            height: 400px;
+            display: block;
+            margin: auto;
+        }
+        /* Style for the cross button in the modal */
+        #closeModalCross {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #94a3b8; /* Slate 400 */
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        #closeModalCross:hover {
+            color: #334155; /* Slate 700 */
+        }
+    </style>
+</head>
+<body class="bg-blue-50 text-indigo-900">
+
+    <!-- Header Section -->
+    <header class="bg-white text-indigo-900 p-4 shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-xl md:text-2xl font-bold tracking-tight">Government Schools Hub</a>
+            <!-- Desktop navigation links - hidden on mobile -->
+            <nav class="hidden md:flex space-x-6">
+                <a href="#profile" class="text-indigo-600 hover:text-yellow-500 transition-colors duration-300">My Profile</a>
+                <a href="#gallery" class="text-indigo-600 hover:text-yellow-500 transition-colors duration-300">Gallery</a>
+                <a href="#faq" class="text-indigo-600 hover:text-yellow-500 transition-colors duration-300">FAQs</a>
+                <a href="#map" class="text-indigo-600 hover:text-yellow-500 transition-colors duration-300">Location</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative w-full h-80 md:h-[500px] overflow-hidden">
+        <img src="https://placehold.co/1920x1080/4c0519/d1d5db?text=Awesome+School+Pic" alt="School hero section" class="absolute inset-0 w-full h-full object-cover brightness-50">
+        <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center text-white">
+            <h1 class="text-3xl md:text-6xl font-extrabold mb-4 drop-shadow-md">Connecting Students and Schools</h1>
+            <p class="text-lg md:text-xl max-w-2xl mx-auto drop-shadow-sm">
+                "Education is a matter of life and death for our nation."
+                <br>
+                <span class="font-semibold">— Quaid-e-Azam Muhammad Ali Jinnah</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- Disclaimer Section -->
+    <section class="bg-yellow-500 py-3 md:py-4">
+        <div class="flex items-center justify-center overflow-hidden whitespace-nowrap">
+            <div class="text-base md:text-lg font-medium text-indigo-900 animate-scroll-text">
+                <span class="pr-20">This is a community project for students and schools, not an official site. Created with care by Maryam. 💖</span>
+                <span class="pr-20">This is a community project for students and schools, not an official site. Created with care by Maryam. 💖</span>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Professional Profile Section -->
+    <section id="profile" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto text-center px-4">
+            <div class="max-w-md mx-auto bg-gray-100 p-8 rounded-xl shadow-lg border-2 border-blue-200">
+                <!-- Profile picture placeholder -->
+                <div class="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-4 border-blue-400 shadow-md">
+                    <img src="https://placehold.co/128x128/e5e7eb/4b5563?text=PFP" alt="Profile Picture Placeholder" class="w-full h-full object-cover">
+                </div>
+                <h2 class="text-2xl font-extrabold text-blue-800 mb-2">Hello, I'm Maryam</h2>
+                <p class="text-gray-700 text-lg leading-relaxed">
+                    This website was developed as a student-led project to assist fellow students and schools by providing a centralized hub of useful information.
+                </p>
+                <div class="mt-4 text-blue-900 font-semibold">
+                    <a href="https://example.com/maryam" target="_blank" class="text-blue-600 hover:text-blue-800 transition-colors duration-300 underline font-bold">Visit My Profile</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3D Animation Section -->
+    <section class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-2xl md:text-4xl font-bold mb-8 text-indigo-900">A Little Fun 3D Animation!</h2>
+            <canvas id="my3dCanvas"></canvas>
+            <!-- The button to open the modal has been removed -->
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-16 md:py-24 bg-blue-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl md:text-4xl font-bold text-center mb-10 text-indigo-900">School Gallery</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <img src="https://placehold.co/600x400/a855f7/fff?text=School+Pic+1" alt="School event" class="w-full h-auto rounded-xl shadow-lg hover:scale-105 transition-transform duration-300">
+                <img src="https://placehold.co/600x400/d8b4fe/fff?text=Classroom" alt="Classroom" class="w-full h-auto rounded-xl shadow-lg hover:scale-105 transition-transform duration-300">
+                <img src="https://placehold.co/600x400/c084fc/fff?text=Playground" alt="Playground" class="w-full h-auto rounded-xl shadow-lg hover:scale-105 transition-transform duration-300">
+                <img src="https://placehold.co/600x400/8b5cf6/fff?text=Students" alt="Students" class="w-full h-auto rounded-xl shadow-lg hover:scale-110 transition-transform duration-300">
+            </div>
+            <p class="text-center text-sm mt-8 text-indigo-700 italic">
+                Note: In a real website, this is where you could add pictures from school events or link to a photo album.
+            </p>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-16 md:py-24 bg-blue-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl md:text-4xl font-extrabold text-center mb-10 text-indigo-900 drop-shadow-lg">Frequently Asked Questions</h2>
+            <div class="max-w-4xl mx-auto space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="bg-white p-4 rounded-xl shadow-2xl border-2 border-blue-200 accordion-item">
+                    <button class="w-full text-left font-extrabold text-lg text-indigo-700 flex justify-between items-center focus:outline-none" onclick="toggleAccordion(this)">
+                        <span>Is this a government or private school?</span>
+                        <span class="text-2xl transform transition-transform duration-300">+</span>
+                    </button>
+                    <div class="accordion-content p-4 text-indigo-600">
+                        This is a government school established to provide quality education to the community.
+                    </div>
+                </div>
+                <!-- FAQ Item 2 -->
+                <div class="bg-white p-4 rounded-xl shadow-2xl border-2 border-blue-200 accordion-item">
+                    <button class="w-full text-left font-extrabold text-lg text-indigo-700 flex justify-between items-center focus:outline-none" onclick="toggleAccordion(this)">
+                        <span>What facilities are available at the school?</span>
+                        <span class="text-2xl transform transition-transform duration-300">+</span>
+                    </button>
+                    <div class="accordion-content p-4 text-indigo-600">
+                        The school has well-equipped classrooms, a library, and a dedicated playground for students.
+                    </div>
+                </div>
+                <!-- FAQ Item 3 -->
+                <div class="bg-white p-4 rounded-xl shadow-2xl border-2 border-blue-200 accordion-item">
+                    <button class="w-full text-left font-extrabold text-lg text-indigo-700 flex justify-between items-center focus:outline-none" onclick="toggleAccordion(this)">
+                        <span>Is there an entry test for admission?</span>
+                        <span class="text-2xl transform transition-transform duration-300">+</span>
+                    </button>
+                    <div class="accordion-content p-4 text-indigo-600">
+                        Please contact the school administration directly for the latest admission policies and requirements.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Single Map Section -->
+    <section id="map" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl md:text-4xl font-bold text-center mb-10 text-indigo-900">Our Location</h2>
+            <div class="rounded-xl shadow-xl overflow-hidden">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3401.7656094411123!2d74.341142514983!3d31.549216781255554!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3919053337a3479b%3A0xc66c1e9596c56885!2sGovt.%20Girls%20High%20School!5e0!3m2!1sen!2s!4v1628173456789!5m2!1sen!2s" 
+                    width="100%" 
+                    height="450" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade"
+                    class="w-full h-full">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer id="footer" class="bg-indigo-900 text-white py-12">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+            <!-- Quick Links 1 -->
+            <div>
+                <h3 class="text-lg font-bold mb-4 text-yellow-400">Quick Links</h3>
+                <ul class="space-y-2 text-indigo-200">
+                    <li><a href="https://hed.punjab.gov.pk/" target="_blank" class="hover:text-yellow-400 transition-colors duration-200">HED Punjab</a></li>
+                    <li><a href="https://mis.hed.punjab.gov.pk/" target="_blank" class="hover:text-yellow-400 transition-colors duration-200">MIS HED Punjab</a></li>
+                    <li><a href="https://hed.punjab.gov.pk/colleges" target="_blank" class="hover:text-yellow-400 transition-colors duration-200">HED Colleges</a></li>
+                    <li><a href="https://www.punjab.gov.pk/hed" target="_blank" class="hover:text-yellow-400 transition-colors duration-200">Punjab Govt. HED</a></li>
+                    <li><a href="http://www.biselahore.com/" target="_blank" class="hover:text-yellow-400 transition-colors duration-200">BISE Lahore</a></li>
+                    <li><a href="http://www.bisefsd.edu.pk/" target="_blank" class="hover:text-yellow-400 transition-colors duration-200">BISE Faisalabad</a></li>
+                    <li><a href="https://gcu.edu.pk/" target="_blank" class="hover:text-yellow-400 transition-colors duration-200">GC University</a></li>
+                </ul>
+            </div>
+            <!-- Quick Links 2 -->
+            <div>
+                <h3 class="text-lg font-bold mb-4 text-yellow-400">Quick Links</h3>
+                <ul class="space-y-2 text-indigo-200">
+                    <li><a href="https://bisesahiwal.edu.pk/" target="_blank" class="hover:text-yellow-400 transition-colors duration-200">BISE Sahiwal</a></li>
+                    <li><a href="https://www.bisedgkhan.edu.pk/" target="_blank" class="hover:text-yellow-400 transition-colors duration-200">BISE DG Khan</a></li>
+                    <li><a href="http://www.bisesargodha.edu.pk/" target="_blank" class="hover:text-yellow-400 transition-colors duration-200">BISE Sargodha</a></li>
+                    <li><a href="http://biserawalpindi.edu.pk/" target="_blank" class="hover:text-yellow-400 transition-colors duration-200">BISE Rawalpindi</a></li>
+                    <li><a href="https://www.bisebwp.edu.pk/" target="_blank" class="hover:text-yellow-400 transition-colors duration-200">BISE Bahawalpur</a></li>
+                    <li><a href="http://www.bisegrw.edu.pk/" target="_blank" class="hover:text-yellow-400 transition-colors duration-200">BISE Gujranwala</a></li>
+                    <li><a href="http://lcwu.edu.pk/" target="_blank" class="hover:text-yellow-400 transition-colors duration-200">LCWU</a></li>
+                </ul>
+            </div>
+            <!-- Copyright -->
+            <div class="md:col-span-1 md:text-right">
+                <p class="text-sm mt-4 text-indigo-400">This website is for informational purposes only and is not the official website of any school. It aims to connect students and schools more efficiently.</p>
+                <p class="mt-4 text-sm text-indigo-400">&copy; 2025 Government Schools Hub. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#top" id="scrollToTopBtn" class="fixed bottom-6 right-6 p-4 bg-indigo-600 text-white rounded-full shadow-lg transition-transform transform hover:scale-110 opacity-0 invisible focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-opacity-50" aria-label="Scroll to top">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </a>
+
+    <script>
+        // Accordion functionality for FAQ
+        function toggleAccordion(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('span:last-child');
+            const isOpen = content.classList.contains('open');
+
+            // Close all other accordions
+            document.querySelectorAll('.accordion-content').forEach(c => {
+                c.classList.remove('open');
+                c.previousElementSibling.querySelector('span:last-child').style.transform = 'rotate(0deg)';
+            });
+
+            // Open the clicked accordion if it wasn't already open
+            if (!isOpen) {
+                content.classList.add('open');
+                icon.style.transform = 'rotate(45deg)';
+            }
+        }
+
+        // Back to top button functionality
+        const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+        
+        window.onscroll = function() {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                scrollToTopBtn.classList.remove('opacity-0', 'invisible');
+                scrollToTopBtn.classList.add('opacity-100', 'visible');
+            } else {
+                scrollToTopBtn.classList.remove('opacity-100', 'visible');
+                scrollToTopBtn.classList.add('opacity-0', 'invisible');
+            }
+        };
+        
+        // Change color on click for the back to top button
+        scrollToTopBtn.addEventListener("mousedown", function() {
+            this.classList.add('active');
+        });
+        scrollToTopBtn.addEventListener("mouseup", function() {
+            this.classList.remove('active');
+        });
+        
+        // Three.js 3D Animation
+        window.onload = function() {
+            const canvas = document.getElementById('my3dCanvas');
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, canvas.width / canvas.height, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
+            renderer.setSize(canvas.width, canvas.height);
+
+            const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
+            const material = new THREE.MeshBasicMaterial({ color: 0x8b5cf6, wireframe: true });
+            const torus = new THREE.Mesh(geometry, material);
+            scene.add(torus);
+
+            camera.position.z = 30;
+
+            function animate() {
+                requestAnimationFrame(animate);
+
+                torus.rotation.x += 0.01;
+                torus.rotation.y += 0.01;
+
+                renderer.render(scene, camera);
+            }
+            animate();
+        };
+
+        // Initialize accordions to be closed on load
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.accordion-content').forEach(content => {
+                content.classList.remove('open');
+            });
+        });
+    </script>
+</body>
+</html>
